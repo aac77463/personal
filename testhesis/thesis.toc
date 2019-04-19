@@ -1,0 +1,30 @@
+\contentsline {section}{\hspace {-19pt} Signature Page}{ii}
+\contentsline {section}{\hspace {-19pt} Acknowledgements}{iii}
+\contentsline {section}{\hspace {-19pt} Dedication}{iv}
+\contentsline {section}{\hspace {-19pt} List of Figures}{vi}
+\contentsline {section}{\hspace {-19pt} Abstract}{viii}
+\contentsline {chapter}{\numberline {1}Introduction and Background}{1}
+\contentsline {section}{\numberline {1.1}Circumstellar Disks: Introduction}{1}
+\contentsline {section}{\numberline {1.2}Structures in Disks}{2}
+\contentsline {section}{\numberline {1.3}The Photoelectric Instability}{2}
+\contentsline {section}{\numberline {1.4}The Model}{3}
+\contentsline {subsection}{\numberline {1.4.1}Run Parameters}{3}
+\contentsline {subsection}{\numberline {1.4.2}The Equations}{6}
+\contentsline {subsection}{\numberline {1.4.3}Photoelectric Instability}{6}
+\contentsline {subsection}{\numberline {1.4.4}Units}{6}
+\contentsline {chapter}{\numberline {2}Results and Analysis}{7}
+\contentsline {section}{\numberline {2.1}Benchmark for Gaps}{7}
+\contentsline {section}{\numberline {2.2}The Effect of Dust}{7}
+\contentsline {subsection}{\numberline {2.2.1}Dust Flattens the Gap Pressure Bump}{9}
+\contentsline {subsection}{\numberline {2.2.2}Dependency on Extent of Mass Reservoir}{9}
+\contentsline {subsection}{\numberline {2.2.3}Differences in Inner Disk for Different Planet Masses \& Dust-to-Gas Ratio}{11}
+\contentsline {section}{\numberline {2.3}Disk with $\varepsilon =10^{-1}$ and $h=0.05$}{13}
+\contentsline {section}{\numberline {2.4}Disk with $\varepsilon =1$ and $h=0.05$}{16}
+\contentsline {section}{\numberline {2.5}ADD THERMAL MASS HERE}{20}
+\contentsline {section}{\numberline {2.6}Disk with $\varepsilon =1$ and $H=0.1$}{20}
+\contentsline {section}{\numberline {2.7}Disk with $\varepsilon =1$ and $H=0.2$}{22}
+\contentsline {subsection}{\numberline {2.7.1}Initial Set Up}{22}
+\contentsline {section}{\numberline {2.8}Current Results}{22}
+\contentsline {chapter}{\numberline {3}Application to the Observations: HD141569A}{23}
+\contentsline {section}{\hspace {-19pt} References}{24}
+\contentsfinish 

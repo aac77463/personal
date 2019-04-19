@@ -1,0 +1,689 @@
+\documentclass[onecolumn]{report}
+
+\input{preamble.tex}
+
+\usepackage{multirow}
+
+\usepackage[export]{adjustbox}
+\usepackage{bm}
+\usepackage{gensymb}
+\usepackage{color}
+
+\def\cyan#1{\textcolor{cyan}{#1}}
+\def\green#1{\textcolor{green}{#1}}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{0.5cm}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{sectsty}
+
+\usepackage{geometry}
+ \geometry{
+ left=1.5in,
+ top=1in,
+ right=1in,
+ bottom=1in,
+ }
+
+\pagenumbering{roman}
+
+\newcommand{\startsquarepar}{%
+    \par\begingroup \parfillskip 0pt \relax}
+\newcommand{\stopsquarepar}{%
+    \par\endgroup}
+
+\newcommand{\epsi}{\varepsilon}
+
+\renewcommand{\contentsname}{\normalfont \large \vspace{-60pt} \hspace{160pt} Table of Contents}
+\renewcommand{\listfigurename}{\normalfont \large \vspace{-60pt}\hspace{173pt} List of Figures}
+\renewcommand{\bibname}{\normalfont \large References}
+
+\usepackage{tocloft}
+\renewcommand\cftchapfont{\normalfont \large}
+\renewcommand\cftchappagefont{\normalfont \large}
+\renewcommand\cftloftitlefont{\normalfont \large}
+
+\def\bibindent{1.5em}
+\makeatletter
+\let\old@biblabel\@biblabel
+\def\@biblabel#1{\old@biblabel{#1}\kern\bibindent}
+\let\old@bibitem\bibitem
+\def\bibitem#1{\old@bibitem{#1}\leavevmode\kern-\bibindent}
+\renewcommand\@biblabel[1]{}
+\makeatother
+
+\allsectionsfont{\centering \normalfont \large}
+
+\newsavebox\foobox
+\def\slantvalue{0}
+\newcommand{\slantboxengine}[2][\slantvalue]{\mbox{%
+        \sbox{\foobox}{#2}%
+        \hskip\wd\foobox
+        \pdfsave
+        \pdfsetmatrix{1 0 #1 1}%
+        \llap{\usebox{\foobox}}%
+        \pdfrestore
+}}
+\newcommand\slantbox[2][\slantvalue]{%
+  \edef\slantvalue{#1}\expandafter\slantboxhelpA#2 \relax\relax}
+\def\slantboxhelpA#1 #2\relax{%
+  \slantboxengine{#1}%
+  \ifx\relax#2\relax\else\ \slantboxhelpA#2\relax\fi
+}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\renewcommand{\thesubsubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}.\alph{subsubsection}}
+
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{-30\p@}%
+  {\parindent \z@ \center \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \large\normalfont \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 10\p@
+    \fi
+    \interlinepenalty\@M
+    \large \normalfont #1\par\nobreak
+    \vskip 10\p@
+  }}
+
+\def\@makeschapterhead#1{%
+  %\vspace*{50\p@}%
+  {\parindent \z@ \center
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 20\p@
+  }}
+\makeatother
+
+\usepackage{titletoc}%
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {\normalfont}% <above-code>
+  {\chaptername\ \thecontentslabel: }% <numbered-entry-format>
+  {}% <numberless-entry-format>
+  {\hfill\contentspage}% <filler-page-format>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ~~~!!~!!!~! end Alex stuff
+
+\mathchardef\mathhyphen="2D
+
+%\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ~~~!!~!!!~! start Alex stuff
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\large
+
+CALIFORNIA STATE UNIVERSITY, NORTHRIDGE \\~\\~\\~\\~\\~\\ ~\\~\\~\\~\\
+
+Disentangling the Effect of Planets from Photoeletric Instability In Gas-Rich Optically Thin Dusty Disks \\~\\~\\~\\~\\~\\~\\~\\~\\~\\
+
+A thesis submitted in partial fulfillment of the requirements \\~\\
+
+for the degree of Master of Science in Physics \\~\\~\\~\\~\\~\\~\\~\\
+
+By \\~\\ Areli Castrejon
+
+
+\vfill
+
+May 2018
+
+\end{center}
+
+\normalfont
+\newpage
+\addcontentsline{toc}{section}{\hspace{-19pt} Signature Page}
+
+The thesis of Areli Castrejon is approved: \\~\\~\\~\\~\\~\\~\\~\\
+
+
+------------------------------------------------------------------ \hfill ---------------------------
+
+Dr. Farisa Morales \hfill Date \hspace{75pt} \\~\\~\\~\\~\\~\\
+
+------------------------------------------------------------------ \hfill ---------------------------
+
+Dr. Luca Ricci \hfill Date \hspace{75pt} \\~\\~\\~\\~\\~\\
+
+------------------------------------------------------------------ \hfill ---------------------------
+
+Dr. Adam Burgasser \hfill Date \hspace{75pt} \\~\\~\\~\\~\\~\\
+
+------------------------------------------------------------------ \hfill ---------------------------
+
+Dr. Geoffrey Bryden \hfill Date \hspace{75pt} \\~\\~\\~\\~\\~\\
+
+------------------------------------------------------------------ \hfill ---------------------------
+
+Dr. Wladimir Lyra, Chair \hfill Date \hspace{75pt}
+
+\vfill
+\begin{center}
+California State University, Northridge
+\end{center}
+
+\doublespacing
+
+\begin{center}
+\newpage
+\section*{\normalfont Acknowledgements}
+\addcontentsline{toc}{section}{\hspace{-19pt} Acknowledgements}
+\thispagestyle{plain}
+\end{center}
+
+ACKNOWLEDGEMENTS GO HERE
+
+
+\newpage
+\begin{center}
+\section*{\normalfont Dedication}
+\addcontentsline{toc}{section}{\hspace{-19pt} Dedication}
+\thispagestyle{plain}
+\end{center}
+
+DEDICATIONS GO HERE
+
+\newpage
+\singlespacing
+
+\tableofcontents
+
+\clearpage
+\addcontentsline{toc}{section}{\hspace{-19pt} List of Figures}
+\listoffigures
+
+\clearpage
+\begin{center}
+\addcontentsline{toc}{section}{\hspace{-19pt} Abstract}
+\section*{Abstract}
+\thispagestyle{plain}
+
+\doublespacing
+\large
+
+Disentangling Planets from Photoelectric Instability In Gas-Rich Optically Thin Dusty Disks  \\~\\~\\~\\
+
+By
+
+Areli Castrejon
+
+Master of Science in Physics \\~\\~\\~\\
+
+\end{center}
+
+\doublespacing
+\large
+
+Structures found in circumstellar disks, sch as gaps and rings are attributed to planets. Yet, this causation thus far has been difficult to show unequivocally, as other disk processes may also produce these features. In particular, a photoelectric instability (PEI) has been proposed as a parallel cause for structures. The instability operates in gas-rich optically thin disks, and generate non-trivial structures, including some predicted by planet-disk interactions. We examine the question of how to disentangle planetary effects on disk structure from those of the photoelectric instability. We use the Pencil Code to perform two-dimensional global hydriodynamic models of the dynamics of gas and dust in a non-magnetized thin disk, with and without planetary perturbers. Photoelectric heating is modeled with an equation of state where the pressure if proportional to the dust surface density (short thermal time approximation). The drag force on grains and its backreaction on the gas are included. Starting without the effect of the photoelectric heating, we find that dust-gas interactions alter the shape of the planetary gap from the dust-free case when the local dust-to-gas ratio $\varepsilon$ approaches unity. This result is valid also for primordial disksm because as the dust drifts inwards, the dust front becomes a sharp transition and, the backreaction triggers the Rossby wave instability. When photoelectric heating is included, we find that the photoelectric instability obscures structures induced by planets unless the plaent's mass is sufficiently large to carve a noticeable gap. More specifically, the instability generates ars and rings of regular spacing: a planet is discernable when it carves a dust gap wider than the wavelength of the instability
+
+\chapter{Introduction and Background} %\label{chap:introduction-and-background}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Circumstellar Disks: Introduction}
+
+One of the oldest questions that all civilizations, ancient and modern alike, have tried to answer is the origin of humankind. We want to know where we came from, and ultimately where that will lead us to. We cannot answer this question without first asking how our world formed. Since the first time telescopes were pointed at the sky, we have inched closer and closer to answering the riddle behind planet formation, and the creation of our own.
+
+The widely accepted model for the creation of star systems, and consequentially, planet formation is the nebular hypothesis. Clouds of interstellar gas remain in equilibrium, until they grow to massive and collapse under their own gravitational influence. The rotational kinetic is conserved, and as a star forms in the center, the cloud flattens out. This becomes the circumstellar disk around the newly-formed star.
+
+
+This disk is now called a protoplanetary disk. In the disk, there are large quantities of dust and gas that could lead to planet formation, much in the same way that the star and the disk formed. In this case, planets can be formed by two mechanisms. The two mechanisms are gravitational instability and direct accretion.
+
+Whenever we have a have region in the disk that becomes cool or develops a large surface density, we can incite gravtitational instabilities. This can produce: local and global spiral waves \textbf{citations needed}, self-gravitating turbulence \textbf{citations needed}, and fragmentation into clumps and other substructures \textbf{citations needed}, the latter of which could potentially lead to form giant planets.
+
+In the accretion model, we have dust grains in the $\mu m$ range that through interactions, grow into larger size particulates. They grow into pebbles and through gravitational instabilities they grow into planetesimals, creating planets.
+
+\section{Structures in Disks} %\label{sec:observation}
+
+Disks have been theorized to exist, due to the nebular hypothesis that was mentioned earlier. However, due to constraints on our telescopes, we had not been able to discern them.
+
+Recent observations from ALMA and VLT have shown us more disks than we have seen in the past. The increase in angular resolution has made it so that we are not able to see disks more clearly. The disks we have observed now show structures that are found to be non-trivial.
+
+One of these structures are rings. Rings have been found around HL Tau, between 20 and 100 AU. In TW Hydra, we have also found ring structures, that are not well defined, between 2 to 40 AU.
+
+In tandem with rings, we also find gaps, which are areas devoid of gas and dust.
+
+The observations have also shown azimuthal symmetries. These symmetries are crescent shaped emissions. Two disks that show this structure are HD 142527 and LkH$\alpha$. 
+
+The question now becomes, what can we attribute these structures to? The first conclusion that comes to mind is the presence of planet. The planet would clear out its orbit, causing the gaps that we see in the observations. Planet can also incite the spirals in disks, if the planet is massive enough.
+
+\section{The Photoelectric Instability}
+
+While that is valid conclusion, it overlooks one aspect that is of importance in optically-thin disks. Disks are usually classified as gas-rich or gas-free. There are some disks in this regime that have amounts of gas that are comparable to the amount of dust. In this case, the dust and the gas can become dynamically significant to the same degree. When this happens we propose a new mechanism that can give rise to the structures that are usually attributed to planets. This mechanism is called the photoelectric instability.
+
+The photoelectric instability happens when high-energy photons from the star strip electrons from the dust grains. The electrons ejected are superthermal. They have a higher energy than surrounding gas, and through collisions they impart their kinetic energy to the gas. The gas becomes heated due to the collisions, creating a pressure bump. Now that the gas has a pressure bump, the inner and outer edges of the pressure bump are out of equilibrium with the rest of the disk. The inner part feel a positive pressure gradient (towards the star), which decreases their effective gravity, causing them to rotate faster than the Keplerian velocity. Gas parcels on the outer part of the pressure bump feel a negative pressure gradient, which increases their effective gravity, causing them move slower than the Keplerian velocity. The motions of the dust are changed due to this. In the inner part, the gas moves faster than the dust, which makes the dust feel a tailwind, pushing it into a higher orbit. In the outer part, the gas moves slower than the dust, causing it (dust) to feel a headwind, making it move into a lower orbit. This creates a snowball effect that causes more dust to concentrate at the location of the pressure bump. This runaway effect of capturing more dust, which leads to more heating, is the mechanism behind the creation of the arcs, gaps, and rings that we see in optically-thin circumstellar disks.
+
+\section{The Model}
+
+\subsection{Run Parameters}
+
+The simulations are performed on a uniform cylindrical grid (coordnates $r$, $\phi$), with a resolution of ($N_r$, $N_{\phi}$) = (528, 528), and a linear domain $L_r$=[0.4,2.5] and full 2$\pi$ coverage in azimuth(\textbf{get this explained too}). The 200,000 dust grains are modeled as Lagrangian superparticles scattered uniformly across the disk. The star and the planet orbit around a shared center of mass in circular orbits. The self-gravity of the disk is ignored. We ran simulations with three different planet masses. The mass ratios of the planets with respect to the host star are $q = 10^{-3}, 10^{-4}, 10^{-5}$. For each planet, we simulated five dust-to-gas ratios from $10^{-4}$ to 1, spaced logarithmically. The highest growth rate for the PEI are in the regime between $\epsi=10^{-2}$ \& $\epsi=1$.
+
+The parameters of the simulations we ran are in Table.~\ref{table:allmodels}. In order to investigate the effect of the photoelectric instability we ran 36 simulations. We used to planets, a Jupiter and Neptune analog. For each planet, we varied 3 disk temperatures (T = 5, 20, 80K), 2 dust-to-gas ratios ($\epsi=10^{-1},1$), and 3 different cases for gap carving in the disk. The three cases are: a planet with no photoelectric instability, a disk with instability on its own, and a combined case with an embedded planet and the instability.
+
+\begin{table}
+  \caption[]{Parameter space explored in our simulations: $h$ is the
+    disk scale height of the disk, $\varepsilon$ is the initial
+    dust-to-gas ratio, and $q$ is the planet-to-star mass ratio.
+    The letter identifier in the first column is shown in the upper
+    left corner of each plot in this paper, for easier referral.}
+  \label{table:allmodels}
+  \begin{center}
+    \begin{tabular}{lcc c} \hline \hline
+      \multirow{2}{*} \sc{Run} & h  & $\varepsilon$ & $q$ \\
+      \multicolumn{4}{c}{\multirow{2}{*}{Fiducial runs with no dust}}\\\\\hline
+      i  & 0.05 & $0$ & $10^{-3}$\\
+      ii & 0.05 & $0$ & $10^{-4}$\\\hline
+      \multicolumn{4}{c}{\multirow{2}{*}{Runs with a single planet.}}\\\\\hline
+      A & 0.05 & $10^{-1}$ & $10^{-3}$\\
+      B & 0.05 & $10^{-1}$ & $10^{-4}$\\
+      F & 0.05 & $1$       & $10^{-3}$\\
+      G & 0.05 & $1$       & $10^{-4}$\\
+      K & 0.1  & $1$       & $10^{-3}$\\
+      L & 0.1  & $1$       & $10^{-4}$\\
+      P & 0.2  & $1$       & $10^{-3}$\\
+      Q & 0.2  & $1$       & $10^{-4}$\\
+      AA & 0.05 & $10^{-4}$ & $10^{-3}$\\
+      AB & 0.05 & $10^{-4}$ & $10^{-4}$\\
+      AC & 0.05 & $10^{-3}$ & $10^{-3}$\\
+      AD & 0.05 & $10^{-3}$ & $10^{-4}$\\
+      AE & 0.05 & $10^{-2}$ & $10^{-3}$\\
+      AF & 0.05 & $10^{-2}$ & $10^{-4}$\\\hline
+      \multicolumn{4}{c}{\multirow{2}{*}{Runs with photoelectric instability.}}\\\\\hline
+      C & 0.05 & $10^{-1}$ & 0\\
+      H & 0.05 & $1$       & 0\\
+      M & 0.1  & $1$       & 0\\
+      R & 0.2  & $1$       & 0\\\hline
+      \multicolumn{4}{c}{\multirow{2}{*}{Runs with a planet and instability.}}\\\\\hline
+      D & 0.05 & $10^{-1}$ & $10^{-3}$\\
+      E & 0.05 & $10^{-1}$ & $10^{-4}$\\
+      I & 0.05 & $1$       & $10^{-3}$\\
+      J & 0.05 & $1$       & $10^{-4}$\\
+      N & 0.1  & $1$       & $10^{-3}$\\
+      O & 0.1  & $1$       & $10^{-4}$\\
+      S & 0.2  & $1$       & $10^{-3}$\\
+      T & 0.2  & $1$       & $10^{-4}$\\\hline
+      \multicolumn{4}{c}{\multirow{2}{*}{Runs with no gas backreaction.}}\\\\\hline
+      BA & 0.05 & $10^{-1}$ & 0\\
+      BB & 0.05 & $10^{-2}$ & 0\\\hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\newpage
+
+\subsection{The Equations} %\label{subsec:basic-structure}
+
+In order to solve the steady-state solution of the gas in a disk we need to solve the hydrodynamic equations and the equation for the gravitational potential.
+
+For a protoplanetary disk, two simplifications are made. We usually assume that the mass of the disk is much smaller than the mass of the star, such that $M_{star} >> M_{disk}$. 
+
+In our models, we assume that we are dealing with a disk where the radius is much larger than the thickness, such that $r > h$. This is called the thin-disk approximation, since the vertical structure becomes superfluous, and we can model the disk in two dimensions instead of 3. We include gas and dust in our simulations. Dust is treated as Lagrangian particles and the gas is evolved on a Eulerian grid. We solve the different equations for the dynamics which are as follows:
+
+\beqn
+\pderiv{\varSigma_g}{t} &=& -\advec{\varSigma_g} -\varSigma_g \Div{\v{u}}, \label{eq:continuity} \\ %+ f_D(\varSigma\_g)\\
+\pderiv{\v{u}}{t} &=& -\advec{\v{u}} -\frac{1}{\varSigma_g}\grad{P} - \grad{\varPhi} - \frac{\varSigma_d}{\varSigma_g}\frac{\left(\v{u}-\v{v}\right)}{\tauf}, \label{eq:euler}\\
+\pderiv{S}{t} &=& -\advec{S} -\frac{c_V}{T}\frac{\left(T-T_p\right)}{\taut}, \label{eq:entropy}\\
+\varPhi &=& \sum_i^n\frac{GM_i}{\sqrt{{R_i}^2 + {b_i}^2}}, \label{eq:potential}\\
+P &=& \rho {c_s}^2/\gamma, \label{eq:eos}\\
+\frac{d\v{x}}{dt} &=& \v{v}, \label{eq:position-dust}\\
+\frac{d\v{v}}{dt} &=& -\grad{\varPhi} - \frac{\left(\v{v}-\v{u}\right)}{\tauf} \label{eq:momentum-dust},
+\eeqn
+
+Here $\varSigma_g$ and $\varSigma_d$ are the vertically integrated gas density and bulk density of the dust respectively.
+
+
+\subsection{Photoelectric Instability}
+
+
+\subsection{Units}
+
+
+\chapter{Results and Analysis} \label{chap:results}
+
+\section{Benchmark for Gaps}
+
+To find the shapes that a planet carves in a gaseous disk, first we run a simulation based on \textbf{DeValborro+06}, which include a planet and a dustless disk. The planets are of a mass ratio $q=10^{-3}$ (Jupiter) \& $q=10^{-4}$ (Neptune). In the upper part of \fig{fig:devalborro} we plot the gas density in the disk for both planets with the massive case on the right hand side. The Jupiter-mass planet clears out a large gap that is nearly devoid of gas. Strong vortices due to its influence are also found in the inner and outer edges of the carved gap, \textbf{EXPLAIN (spawned by the Rossby wave instability)}. \textbf{Lovelace+99, DeValborro+06}. The Neptune-mass case also carves a gap, but it noticeable narrower. The vortices seen in the previous case are absent for this planet mass. In the lower part of \fig{fig:devalborro}, we plot the gas density, divided by the initial density as a function of radius. The usual gap shapes are reproduced, including the pressure bumps at the inner and outer edges of the gap, with the bump size being tied to the mass of the planet.
+
+
+\begin{figure}
+  \begin{center}
+    \resizebox{.7\textwidth}{!}{\includegraphics{dvbgasplotjupnep.png}}
+    \resizebox{.7\textwidth}{!}{\includegraphics{dvbgasprofilesjupnep.png}}
+    \caption{Fiducial run of a global disk containing only
+      gas. \textit{Upper left:} Planet of mass ratio
+      $q=10^{-4}$. \textit{Upper right:} Planet of mass ratio
+      $q=10^{-3}$. Both planets carve a gap and generate a spiral in
+      the gas. \textit{Bottom:} Averaged gas density as a function of
+      radius from the star. The black curve represents a planet with
+      mass ratio $q=10^{-3}$ and the blue curve represents
+      $q=10^{-4}$. These models represent benchmarks against which we
+      will compare models including dust and photoelectric instability.}
+    \label{fig:devalborro}
+  \end{center}
+\end{figure} 
+
+
+\section{The Effect of Dust}
+
+In order to study the effects of the photoelectric instability in planet-disk interactions, we first need to investigate how the addition of dust will change the gap shape caused by a planet. The vast majority of works on planet-disk interactions asuume either a dust-free or gas-free scenario. Works that include both dust and gas, explore the regime of dust-to-gas ratios that are significantly below unity, where the dust is mostly passive, with the gas dominating the motion of the dust. This is perfectly fine for promordial disks, but to explore the mechanisms that happen in late-transition disks and debris disks with gas, we have to consider higher dust to gas ratios. We seek to find the point where dust backreaction generates a noticeable effect on the gap-carving process. We explore the parameters of dust-to-gas ratios $\epsi=\rho_d / \rho_g$ and planet-to-star mass ratios $q=M_p / M_\star$. Table one shows the majority of the simulations that we used and their letter or number indicator, which will be used in the figures for reference.  
+
+\subsection{Dust Flattens the Gap Pressure Bump} \label{section:flattening}
+
+In the upper panel of \fig{fig:gapjupiter}, we plot the gas density over the initial gas density as a function of distance from the star. The various curves correspond to different dust-to-gas ratios, ranging from 0 (dust-free) to 1, where the dust and gas are present in equal amounts. The scale height for all these plots is $h=0.05$. For the dustless case of 0 (black), up to $10^{-2}$, the gap does not deviate strongly. However, for $\varepsilon=10^{-1}$, and more strongly for $\varepsilon=1$, a significant deviation from the black curve is seen. This is the regime where dust begins to have a noticeable effect on the motion of the gas. In the lower panel, we plot the local dust-to-gas density. The dashed black line denotes the point where this quantity reaches unity. For $\varepsilon=0.1,1$ we note that the deviation in the gap in the upper panel coincides with the local dust-to-gas ratio reaches a value equal to, or close to 1. Therefore, we conclude that the gap carved in a disk deviates when the local dust-to-gas ratio reaches a value near unity.
+
+
+\begin{figure}
+  \begin{center}
+    \resizebox{.9\textwidth}{!}{\includegraphics{qe-3gasd2g.png}}
+    \caption{Effect of dust-to-gas ratio on the shape of planetary gaps. Snapshots are taken at 100 disk orbits for all cases. The top panel shows the gas gap shapes for different initial dust-to-gas ratios, for a Jupiter mass planet. The bottom panel shows the local dust-to-gas ratios. In the upper panel the black line shows a dustless model. As dust-to-gas ratio increases, the pressure bump in the inner gap-edge becomes suppressed, and the bump in the outer gap-edge is nearly washed out. Inspecting the lower plots, the deviation from the dustless case happens when the local dust-to-gas ratio approaches unity. This is expected, as the backreaction of the dragforce comes to heavily influence the gas motion. This threshold is easily reached in the pressure bumps of the planetary gap edges for the runs with initially high dust-to-gas ratios. Given enough time, disks with $\varepsilon=10^{-2}$ (and lower) will reach unity, if the disk is large enough and the pebbles drift continously. The particle drift is enhanced by the planeraty gap and a global negative pressure gradient.}
+  \label{fig:gapjupiter}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}
+  \begin{center}
+    \resizebox{.9\textwidth}{!}{\includegraphics{gap_shapes_neptune_mass.png}}
+  \end{center}
+  \caption{Same as \ref{fig:gapjupiter} but for $q=10^{-4}$. A high dust-to-gas ratio again causes the shape of the gap to deviate from the dustless case. The two highest dust to gas ratios are affected as well as the $\varepsilon=0.001$ case. The effect of the inner bump anticorrelate with the Jupiter case, this is explained in \textbf{INSERT SECTION HERE}.}
+  \label{fig:gapneptune}
+\end{figure}
+
+
+\subsection{Dependency on Extent of Mass Reservoir}
+
+Due to the effect of the global negative pressure gradient, dust grains in the outer disk move drift inwards. As time progresses, the drift is enhanced due to the pressure that is generated by the planetary gap. Notice the strong dependency of the drift speed on the dust-to-gas ratio. Particles that start with a high dust-to-gas ratio drift inwards the slowest because they are strognly affecting the gas.\par
+
+We could conclude, that if the drift continues, and all grain pile up at the gap edge, any initial dust-to-gas ratio will eventually accheve a dust-to-gas ratio of unity. Even for a simulation that begun with $\varepsilon=10^{-2}$ (yellow line), it is close to reaching a value that is close to one. If they can reach this value based on the dust drift alone, then the constraint put on the disk is correlated to the mass reservoir in the disk. 
+
+\subsection{Differences in Inner Disk for Different Planet Masses \& Dust-to-Gas Ratio}
+
+Another feature seen \fig{fig:gapneptune} \& \fig{fig:gapjupiter} is the reversal at the inner bump for higher dust-to-gas ratio for the two planetary masses. In the outer disk, both planets suppress the gap edge as the dust-to-gas ratio increases. However, in the inner disk, the Neptune-mass planet increases the gap height with increase in dust-to-gas ratio. This behavior is not present fot the Jupiter-mass planet.\par
+
+\begin{figure}
+  \begin{center}
+    \resizebox{.8\columnwidth}{!}{\includegraphics{figures/nep_rhoprof_nopgrad.png}}
+  \end{center}
+  \caption{The effect of the particle drift and angular
+    momentum conservation in the gap profile of a
+    Neptune-mass planet. The red lines show runs with
+    $\varepsilon=1$. The black lines show runs with $\varepsilon=0.1$. Solid lines have $b=1	$ ($b$ is
+    the power law of the temperature, giving a global negative pressure
+    gradient); the dashed lines are control runs that correspond to $b=0$, with no global
+    negative pressure. The control runs are similar, with the
+    higher-dust to gas ratio showing a small depression. However, when
+    drift is included, to conserve angular momentum the gas is pushed
+    outwards. For higher dust-to-gas ratios (solid red line),
+    more gas is pushed outwards than for lower dust-to-gas ratio (black
+    solid line).}
+  \label{fig:drift}
+\end{figure}
+
+The difference in this behavior is due to the particles drifting inwards within the disk. This effect is seen in \Fig{fig:drift}. The red lines show runs with a dust-to-gas ratio of 1, and the black lines show runs with dust-to-gas ratio of 0.1. Solid lines have a $b$ value of 1. The parameter $b$ is the power law of the temperature, which gives a global negative pressure gradient. The dashed lines correspond to a $b$ value of 0, where there is no negative global pressure. If we exclude the drift, the simulations are similar, where a dust-to-gas ratio of 1 causes a smaller pressure bump than 0.1, due to the flattening mentioned in Section~\ref{section:flattening}. Runs with a global pressure show significant differences. As particles drift inward, in order to conserve angular momentum, they push the gas outwards. For higher dust-to-gas ratios more gas is pushed outwards than for lower ratios. This effect is seen for the Neptune-mass planet, but not the Jupiter-mass planet. This is because the Jupiter-mass planet carves out a much larger gap from an ealier time, resulting in a less amount of gas being present to be pushed outward. 
+
+\begin{figure}
+  \begin{center}
+    \resizebox{.9\textwidth}{!}{\includegraphics{global_gas_changes_in_epsilon_both.png}}
+  \end{center}
+  \caption{Two dimensional visualization of the effect of dust-to-gas ratio in \Fig{fig:gapneptune} \& \Fig{fig:gapjupiter}. The plots show the gas density for a disk with 	    planet mass ratio $q=10^{-3}$ (Top) and $q=10^{-4}$ (Bottom), with dust-to gas ratios ($\epsi=10{-2}, 10^{-1}, 1$) increasing towards the right. For $\epsi=10^{-2}$, the dust concentration remains low and the gas is unaffected, with the spiral and gap edges remaining mostly smooth as in the dustless case in \Fig{fig:devalborro}. However, for $\epsi=0.1$, the effect is visible at the gap edges and the spiral as they become less laminar and more turbulent-like. In the $\epsi=1$ case, the spiral breaks up into eddies, similar to the behavior of cigarette smoke.}
+  \label{fig:jupnepd2g}
+\end{figure}
+
+
+In \Fig{fig:jupnepd2g} we show 2D plots of the gas density for planet masses $q=10^{-3}$ (upper) and $q=10^{-4}$ (lower). Dust-to-gas ratios $\varepsilon=10^{-2}, 10^{-1}, 1$ are shown from left to right columns. The effect of a low dust-to-gas ratio is barely noticeable for the case of $\varepsilon=10^{-2}$ \& $q=10^{-4}$, when compared to \ref{fig:devalborro}. For dust-to-gas ratio of 0.1, the gas in the gas in the disk becomes more turbulent-like in at the gap edges. The spirals that are caused in the dustless case are smooth and laminar, but as they reach this threshold they become visibly turbulent. Increasing the dust-to-gas ratio to unity, the wake and gaps look even more turbulent, in a pattern resembling cigarette smoke.
+
+Considering only debris disks and $\mu m$ grains, this particular result depends only on the Stokes number and dust-to-gas ratio. It could therefore be applicable to primordial protoplanetary disks if pebbles and boulders ever reach these high values of $\epsi$.
+
+\section{Disk with $\epsi=10^{-1}$ and $h=0.05$}
+
+\begin{figure}
+  \begin{center}
+    \resizebox{.8\textwidth}{!}{\includegraphics{./05_10-1_dust_global.png}}
+    \resizebox{.8\textwidth}{!}{\includegraphics{./05_10-1_gas_global.png}}
+  \end{center}
+  \caption{Dust (upper panels) and gas (lower panels) in
+    a disk with initial dust-to-gas ratio $\varepsilon=10^{-1}$. The top row shows results for a disk with a planet of mass ratio $q=10^{-3}$ and the bottom row shows results for mass ratio $q=10^{-4}$. The first column shows the effect of planet with no photoelectric heating. The middle column, labeled ``PEI'', shows the effect of the photoelectric instability on its own. The last column shows the combined effect of photoelectric instability and a planet. The most striking feature of this comparison is that the $q=10^{-4}$ planet with PEI is virtually indistinguishable from the PEI alone (the middle case). The main feature that makes the $q=10^{-3}$ distinguishable in the midst of PEI structures is the deep and clear planetary gap. We conclude that when photoelectric heating is included, we find that the photoelectric instability obscures structures induced by planets unless the planet's mass is sufficiently large to carve a noticeable gap. The plots are shown after 100 planetary orbits.}
+  \label{fig:eps01dustgas}
+\end{figure}
+
+In \ref{fig:eps01dustgas} we plot the dust on the top and the gas on the bottom for a disk with $h=0.05$ and an initial dust-to-gas ratio of $\epsi=0.1$. For each panel, the left column are simulations containing an embedded planet and no photoelectric heating, the middle columns are simulations of a disk containing photoelectric heating but no embedded planet, and the right columns are simulations for disks containing both and embedded planet and photoelectric heating. The top and bottom rows correspond to a Jupiter-mass and Neptune-mass planet, respectively.
+
+The top panels show the local dust density divided by the initial dust density on a logarithmic scale. The cavitites carved in Run A \& B manifest differently, with run A having noticeably larger gap whe compared to run B. Run A also has an overall lower dust density throughout the disk when compared to run B. These well known results (\textbf{Paardekopper \& Mellema 2004} are expected as a higher-mass planet clears its orbit.)
+
+Run C demonstrates the effects of photoelectric heating on a disk. The structures created are similar to those of (\textbf{Lyra \& Kuchner 2013}), showing rings and incomplete arcs.
+
+Runs D and E correspond to a disk subject to photoelectric heating and containing a planet. Run E, which shows the Neptune analog, is nearly identical when comparing to the control run in C, containing the same structures that are shown in the instability case. We can conclude that the addition of a Neptune-mass planet does not noticeably alter the shape or number of structures from the pure instability case. Run D, which contains a Jupiter-mass perturber, shows larger arcs and a discernable cavity. This is another novel result. When photoelectric heating is included, the photoelectric heating obscures structures induced by planets, unless the planet's mass is sufficiently large enough to carve a noticeable gap. The shape of the structures for this case are also changed when compared to the Neptune case. This is likely due to the stronger eccentricity stirring at mean-motion resonances with higher plaetn mass (\textbf{Murray \& Dermott 1999; Zhu et al. 2014}).
+
+The bottom plots show the same plots as above, but for the gas, where the local gas density is divided by the initial gas density on a linear scale. The most pronounced feature that we see is the anticorrelation of dust and gas, where a large concentration of dust will lead to gas depletion. Reiterating for the gas case, we see that a Jupiter-mass perturber carves a larger gap and leads to a more prominent spiral. The spiral launced from the Nptune-mass planet is almost lost in the midst of structures being generated by the photoelectric instability.
+
+\begin{figure}
+  \begin{center}
+    \resizebox{.45\textwidth}{!}{\includegraphics{./05_m3_10-1_dust_profile.png}}
+    \resizebox{.45\textwidth}{!}{\includegraphics{./05_m4_10-1_dust_profile.png}}
+  \end{center}
+  \caption{Azimuthal average of the dust density for the simulations shown in
+    \ref{fig:eps01dustgas}. The left plot shows the $q=10^{-3}$ case, the
+    right plot shows the $q=10^{-4}$ case. The cases of planet only
+    (red line) and planet + instability (black line) both have a large gap in the dust, centered at $r=1$, where the
+    planet is located. The pure PEI case (blue line) shows structure inside the
+    predicted location of the gap. The lower mass planet also carves a
+    dust gap, but the pure instability and combined case coincide
+    almost exactly. The planet cannot easily be disentangled
+    from the instability in this case.}
+  \label{fig:eps01dustprofile}
+\end{figure}   
+
+
+In \ref{fig:eps01dustprofile}, we plot an averaged linear dust density as a function of radius from the star. The left panel coincides with a Jupiter-mass and the right with a Neptune-mass planet. On the left panel, the combined case in solid black, creates larger concentration of dust than the pure instability case, shown in the solid blue. Additionally, we see that the more massive planet (left), carves a larger gap at the location of the plaenet (100 AU). The width of the gap carved is on the order of 50 AU. For the Neptune case, the blue and black lines coincide in various locations throughout the disk. At the location of the planet (100 AU), there is no discernable gap. This echoes our conclusion that a planet must carve a substantial gap in the dust, allowing planet-induced structures to be disentangled from those of the photoelectric instabilty. The shapes shown here can be used in tandem with actual observations to narrow down the possibility of an embedded planet in a disk where the gas is subject to photoelectric heating.
+
+\section{Disk with $\epsi=1$ and $h=0.05$}
+
+\begin{figure}
+  \begin{center}
+    \resizebox{.8\textwidth}{!}{\includegraphics{./05_10-0_dust_global.png}}
+    \resizebox{.8\textwidth}{!}{\includegraphics{./05_10-0_gas_global.png}}
+  \end{center}
+  \caption{Dust (upper panels) and gas (lower panels) for a disk with
+    dust-to-gas ratio of unity. The disk aspect ratio is
+    $h=0.05$. With the increased dust-to-gas ratio (and stronger
+    effect of the drag force backreaction), the planet-only case shows increased
+    turbulent-like behavior, and the wake has the appearance of
+    cigarette smoke. The middle panels shows a simulation with PEI
+    only. With more dust, the structures are different than in
+    \ref{fig:eps01dustgas}, which is to be expected, given
+    more photoelectric heating and more backreaction.
+    In the combined case (right panels), the plots suggest that
+    the simulation with the higher mass planet is more depleted in
+    grains than the simulation with the lower mass planet. We quantify
+    this result in \ref{fig:eps1dustprofile}. In the gas
+    plots (lower panels) the spiral wake of the higher mass planet is
+    visible.}
+  \label{fig:eps1dustgas}
+  \end{figure}
+
+In \ref{fig:eps1dustgas} we plot the dust and gas for a disk with $h=0.05$ and dust-to-gas ratio of 1. For the dust, runs F and G show a gap due to the pertuber's influence, as expected.
+
+The increase of of $\epsi$ to unity enhances the effects of te dust, as it is easier now for dust concentrations to affect or dominate the gas motions. The extent of the dust distribution is larger for $\epsi=1$ than $\epsi=10^{-1}$ because the dust dominated over the gas and stopped drifting. The lack of drifting is clear from the inner disk, where the amount of dust inthe $\epsi=1$ case is substantial when compared to the depleted inner disk for the $\epsi=10^{-1}$ case. Run H, which corresponds to the photoelectric instability case, shows various arcs, rings, and gaps. This is identical to the fiducial run of (\textbf{Lyra \& Kuchner 2013}). Comparing to the PEI case in \ref{fig:eps01dustgas}, we see that the structures are significantly different, with only small arcs in the $\epsi=0.1$ case, and no complete rings. This is similar to the backreaction-free models of (\textbf{Lyra \& Kuchner 2013}), who found the the backreaction was needed to stabilize and maintain the rings. In that paper they only studied disks with $\epsi=1$, finding that in a run without backreaction, the disk broke into several clumps. This was explained due to the tendency of the gas to counter-rotate in and around regions of high pressure, which is in turn disrupted by the backreaction. For the $\epsi=0.1$ case, the backreaction is weaker than in the unity case, so the ability of the PEI to structure the dust into rings is diminished. Run C, however is more organized than the no-backreaction case in
+\textbf{LK13}, which appeared strongly turbulent. The differences in those runs is not just the backreaction but the dust-to-gas ratio, which leads to less heating.
+
+\begin{figure}
+  \begin{center}
+    \resizebox{0.6\columnwidth}{!}{\includegraphics{./05_10-1_comp_bkrx_gas.png}}
+    \resizebox{0.6\columnwidth}{!}{\includegraphics{./05_10-1_comp_bkrx_dust.png}}
+  \end{center}
+  \caption{A comparison with backreaction active and inactive for a
+    disk of $\varepsilon=10^{-1}$ and $h=0.05$. We see that the
+    backreaction confines the dust into shapely and organized
+    structures.}
+  \label{fig:bkrk_comp}
+\end{figure}  
+
+In \ref{fig:bkrk_comp}, we explore the effect of the dust backreaction for a simulation of $\epsi=0.1$. The upper panel show the gas, while the lower plots show the gas. The panels of the left show runs without backreaction, and those on the right show runs with backreaction. We see that the backreaction confines the dust into shapely and organized structures. The run without the backreaction shows spiral features and accumulation at larger distances from the disk, to a lesser degree than in the run for $\epsi=1$ in \textbf{LK13}. We expect that for lower dust-to-gas ratios the backreaction will be less important and. The conclusion is that well-organized PEI structures should be expected only in disks with high dust-to-gas ratio, higher than primordial.
+
+Runs I and J show a disk with PEI and a planet of $q=10^{-3}$ and $q=10^{-4}$, respectively. The more massive pertuber carves out a larger gap in the dust. Comparing run J to run H, we see no discernable differences. This echoes our previous conclusion that only planets that carve substantials caps can be disentangled from the effect of the PEI. For the gas in \ref{fig:eps1dustgas}, we see similar results to \ref{fig:eps01dustgas}. Runs I \& J, which include a planet and PEI, show one important difference. The Lindblad spiral of the Neptune analog, which was diminished in run E ($\epsi=0.1$), has all but disappeared in run J ($\epsi=1$), washed out by the stronger effect of the PEI. The Jupiter-mass planet in run I is still visible. showing a gap and the Lindblad spiral.
+
+\begin{figure}
+  \begin{center}
+    \resizebox{.45\textwidth}{!}{\includegraphics{./05_m3_10-0_dust_profile.png}}
+    \resizebox{.45\textwidth}{!}{\includegraphics{./05_m4_10-0_dust_profile.png}}
+  \end{center}
+  \caption{Same as \ref{fig:eps01dustprofile} but for $\varepsilon=1$. The
+    simulations with the Jupiter-mass planet case shows a
+    discernable gap that breaks the repeating pattern of the
+    photoelectric instability. {\it This is the key to distinguishing
+      a planet in a disk with photoelectric instability.} The gap size
+    $\delta r_{\rm gap}$ must be larger than the wavelength of the
+    instability $\lambda_{\rm PEI}$. For the Neptune case, the planet
+    carves a much narrower gap, which almost coincides with the
+    periodicity of the instability, making the identification of a
+    planet more challenging.}
+  \label{fig:eps1dustprofile}
+\end{figure}
+
+\ref{fig:eps1dustprofile} is the same as \ref{fig:eps01dustprofile}, but now for a dust-to-gas ratio equal to unity. For the Jupiter-mass planet the dust averages are shown on the left-hand side. The dashed red line and the solid black line both contain a planet, and they show a depletion of dust in the vicinity of the planet at r=1. The solid blue line is for a simulation with only the photoelectric instability. The Neptune case is plotted on the right, with the solid black and red line containing a planet. The pure instability, in the blue, coincides almost exactly with the run incliding the instability and a planet. Where they differ is in a park near the planet, inside of the gap. In this case, it can be argued, that with a very accurate observation we should be able to disentangle this planet from the instability. Therefore, it would be a much arduous task in accuracy, to be able to detect such small differences in the observations. 
+
+\section{ADD THERMAL MASS HERE}
+
+\section{Disk with $\epsi=1$ and $H=0.1$}
+
+\begin{figure}
+  \begin{center}
+    \resizebox{.8\textwidth}{!}{\includegraphics{./1_10-0_dust_global.png}}
+    \resizebox{.8\textwidth}{!}{\includegraphics{./1_10-0_gas_global.png}}
+  \end{center}
+  \caption{Same as \ref{fig:eps1dustgas}, but for $h=0.1$. For the dust
+    plots we see the typical clearing out of dust, with the
+    Jupiter mass carving a larger gap. The instability case now shows
+    only a few arcs and one large diameter ring on the outer edges of
+    the disk. The combined case shows the large disk at the outer
+    boundaries with some added features. Again the Jupiter-mass planet
+    pushes grains away from its gap; and the Neptune-mass planet does
+    not generate structures easily distinguishable from the PEI
+    alone. With this higher temperature, the Neptune-mass planet does
+    not carve a partial gap in the gas, as expected from its lower thermal mass.
+    Run L shows an asymmetry in the outer edge of the dust distribution.
+    The gas plot reveals that these asymmetries are caused by vortices, in a
+    prominent $m=3$ mode. These vortices were generated by Rossby wave instability,
+    effected by the backreaction of the dragforce as the dust front drifts inwards.}
+  \label{fig:h01dustgas}
+  \end{figure} 
+
+Fig. \ref{fig:h01dustgas} shows dust and gas for a disk with aspect ratio of $h=0.1$. The top panel show the dust and the bottom show the gas. The Jupiter-mass planet now has a thermal mass of 0.33, and the Neptune-mass has a thermal mass of 0.03. The Neptune analog does not carve a large enough gap, remaining deeply embedded. The Juper analog als carves a narrower gap, as expected from its thermal mass being lower than 1.
+
+The dust panel of run L deviates from the symmetrical as well as an enhanced dust drift when compared to the Jupiter case in run K. All parameters are equal except for the planet mass. Examining the gas plots, we see prominent strucutures at r=2, somewhat resembling vortices, however these structures are not trapping dust. This only happens if the structures are being triggered after dust has drifted inwards. Indeed, looking at the dust plots, we see that the dust has drifted inward past the location of the vortices.
+
+It is curious that this phenomenon is happening at the outer edges, but since it is not present in the Jupiter case, we can rule out a boundary condition. Instead, we conjecture that we are seeing the Rossby Wave Instability being triggired by the dust drift at this high dust-to-gas ratio. As the dust drifts, it creates a sharp discontinuity. At this dust-to-gas ratio, the backreaction from the gas drag is important dynamically, causing the gas to have differential rotational velocities immediately inside and outside of the dust front. This difference eventually becomes important enough to trigger the RWI. In this case, the dust front is artificial, since we are not replenishing dust particles from the outer boundary. However, there are models where this discontinuity exists, such as in the birth-ring model. In these disks, with a high dust-to-gas ratio, we predict that the RWI should be triggered in the gas. If the vortices disrupt the grains, as in our model, the birth ring will also become eccentric.
+
+The Jupiter-mass planet does not show the same phenomenon due to the reduced dust drift, causing the dust front to remain at the boundary, where the conditions are driven back to initial conditions. We propose that for the $h=0.05$ case this should still be noticed, but the dust has not drifted far enough inwards for the dust front to be resolved outside of the boundary condition. The dust drift is proportional to the sub-Keplerian reduction parameter $\ni$, which is proportional to $h^2$. Increasing h by a factor of 2, increases the drifting time by a factor of 4, making the effect more noticeable.
+
+Run M shows a simulation with PEI and no planet. The simulation contains a smaller number of arcs and more rings when compared to the $h=0.05$ case, the structures are also thicker with a higher value of $H$. The gas disk is empty in the center, due to the increased heating. The gas expands due to the higher temperature, thinning it out. At the boundaries it retains the high initial values due to our boundary that drives values to their original value.
+
+The combined case of a planet and PEI, shown in runs N and O, show rings and arcs as well. Run N, with a larger planet shows a larger gap, with dust depletion in the immediaet area. Run O, for a Neptune analog, shows various arcs and a non-discernable gap in the dust.
+
+\section{Disk with $\epsi=1$ and $H=0.2$}
+
+\subsection{Initial Set Up}
+
+\section{Current Results}
+
+\chapter{Application to the Observations: HD141569A}
+
+Now that we have all this theory and results, we want to apply them to current observations, to test if they are in line with real-life physics. The one disk that we chose is HD141569A, which is pictured in \textbf{insert HD picture here}. This is a good candidate to be exhibiting the PEI due to its age, its dust-to-gas ratio and previous observations. Looking at previous observations we see that the disk shows the same axisymmetric structures, such at the arcs, rings, and gaps that are pertinent to the PEI. Looking at the next figure, we see that observations and different wavelengths show the same structures as a simulations from \textbf{Lyra \& Kuchner 2013, insert figure of observations and simulation.}
+
+
+
+In order to do that, we have to employ another type of code. This is a radiative transfer code called RADMC3D. RADMC3D takes the information from our code, mainly from the dust density in the disk. The code does photon interaction within the disk for certain wavelenghts. From this information is creates an image at the different wavelengths that would reflect what the disk would look like from an observation.
+
+
+\clearpage
+\addcontentsline{toc}{section}{\hspace{-19pt} References}
+\singlespacing
+\begin{thebibliography}{}
+
+\bibitem{alma-et-al_2015}
+ALMA Partnership et al. 2015, ApJL, volume 808, issue 1, article id L3, 10 pp.
+
+\bibitem{andrews-et-al_2016}
+Sean M. Andrews et al. 2016, ApJL, 820, L40, 5
+
+\bibitem{armitage_2011}
+Philip J. Armitage 2011, ARA\& A, 49, 195-236
+
+\bibitem{baehr-klahr-kratter_2017}
+Hans Baehr, Hubert Klahr, \& Kaitlin M. Kratter 2017, ApJ, 848:40, 10
+
+\bibitem{TPS}
+Cl\'ement Baruteau. Toward predictive scenarios of planetary migration. Astrophysics [astroph].
+Observatoire de Paris, 2008. English. $<$tel-00334456$>$
+
+\bibitem{bate_2018}
+Matthew R. Bate 2018, MNRAS, 475, 5618-5658
+
+\bibitem{boehler-et-al_2018}
+Y. Boehler et al. 2018, ApJL, 853, 162, 13
+
+\bibitem{brandenburg-dobler_2010}
+Axel Brandenburg \& Wolfgang Dobler 2010, Astrophysics Source Code Library, ascl:1010.060
+
+\bibitem{choudhuri_1998}
+Arnab Rai Choudhuri 1998, $The Physics of Fluids and Plasmas: An Introduction for Astrophysicists$ (Cambridge University Press), 31-83
+
+\bibitem{elsasser-staude_1978}
+H. Elsasser \& H.J. Staude 1978, A\&A, 70, L3-L6
+
+\bibitem{gammie_2001}
+Charles F. Gammie 2001, ApJ, 553, 174-183
+
+\bibitem{kratter-lodato_2016}
+Kaitlin Kratter \& Giuseppe Lodato 2016, ARA\& A, 54, 271–311
+
+\bibitem{lin-shu_1964}
+C.C. Lin \& Frank H. Shu 1964, AJ, 140, 646
+
+\bibitem{meru-bate_2012}
+Farzana Meru \& Matther R. Bate, 2012, MNRAS, 427, 2022–2046
+
+\bibitem{meru-et-al_2017}
+Farzana Meru et al. 2017, ApJL, 839, L24, 6pp
+
+\bibitem{paardekooper_2012}
+Paardekooper 2012, MNRAS, 421, 3286–3299
+
+\bibitem{perez-et-al_2016}
+Laura M. Perez 2016, Science, 353, 6307, 1519-1521
+
+\bibitem{rice-lodato-armitage_2005}
+W. K. M. Rice, G. Lodato, \& P.J. Armitage 2005, MNRAS, 364, L56-L60
+
+\bibitem{rucinski_1985}
+S.M Rucinski 1985, AJ, 90, 11
+
+\bibitem{smith-terrile_1984}
+Bedford A. Smith \& Richard J. Terrile 1984, Science, 226, 4681, 1421-1424.
+
+\bibitem{toomre_1964}
+Alar Toomre 1964, ApJ, 139, 4, 1217-1238
+
+\bibitem{watson-et-al_2007}
+Alan M. Watson, Karl R. Stapelfeldt, Kenneth Wood, \& Francois Menard 2007, Protostars and Planets V, University of Arizona Press, 951,523-538
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,119 @@
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{ulem}
+
+
+%\usepackage{apjfonts}
+\usepackage{txfonts} % looks nice
+
+\bibliographystyle{apj}
+
+\definecolor{brown}{rgb}{0.42,0.24,0.07}
+\definecolor{green}{rgb}{0.0,0.6,0.00}
+\definecolor{purple}{rgb}{0.7,0.0,0.7}
+\definecolor{black}{rgb}{0.0,0.0,0.0}
+\def\red#1{\textcolor{red}{#1}}
+\def\cyan#1{\textcolor{cyan}{#1}}
+\def\blue#1{\textcolor{blue}{#1}}
+\def\green#1{\textcolor{green}{#1}}
+\def\brown#1{\textcolor{brown}{#1}}
+\def\purple#1{\textcolor{purple}{#1}}
+
+\newcommand\cut[1]{\red{\sout{#1}}}
+
+%%% Useful commands
+\newcommand{\alex}[1]{\green{{#1}}}
+\newcommand{\marc}[1]{\brown{{#1}}}
+\newcommand{\wlad}[1]{\purple{{#1}}}
+\newcommand{\areli}[1]{\cyan{{#1}}}
+\newcommand{\comm}[1]{\blue{{#1}}} %for updates for referee comments
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\ben}{\begin{eqnarray*}}
+\newcommand{\een}{\end{eqnarray*}}
+
+% Variables:
+\newcommand{\Sigmagas}{\ensuremath{\varSigma_\mathrm{g}}}
+\newcommand{\Sigmadust}{\ensuremath{\varSigma_\mathrm{d}}}
+\newcommand{\Sigmagasref}{\ensuremath{\varSigma_\mathrm{g,0}}}
+\newcommand{\OmegaK}{\ensuremath{\varOmega_\mathrm{K}}}
+\newcommand{\Omegagas}{\ensuremath{\varOmega}}
+\newcommand{\Omegaref}{\ensuremath{\varOmega_\mathrm{0}}}
+\newcommand{\rhogas}{\ensuremath{\rho_\mathrm{g}}}
+\newcommand{\rhodust}{\ensuremath{\rho_\mathrm{d}}}
+\newcommand{\rhopmat}{\ensuremath{\rho_\mathrm{mat}}}
+\newcommand{\epsdtog}{\ensuremath{\epsilon_\mathrm{d/g}}}
+\newcommand{\phieffi}{\varPhi_{\mathrm{eff}}}
+\newcommand{\nsuper}{N}
+\newcommand{\nsub}{n}
+\newcommand{\tauf}{\tau_\mathrm{f}}
+\newcommand{\taucool}{\tau_\mathrm{cool}}
+\newcommand{\zetape}{\zeta_\mathrm{pe,0}}
+\newcommand{\Gammape}{\varGamma_\mathrm{pe}}
+\newcommand{\Tref}{T_\mathrm{0}} % reference temperature profile
+\newcommand{\alphaSS}{\ensuremath{\alpha}} % Shakura-Sunyaev alpha
+\newcommand{\alphaSSref}{\ensuremath{\alpha}} % Shakura-Sunyaev alpha at reference radius
+\newcommand{\alphaSB}{\alpha_\mathrm{SB}} % surface brightness slope
+\newcommand{\alphaOD}{\alpha_\mathrm{OD}} % optical depth slope
+\newcommand{\tauOD}{\ensuremath{\tau_\mathrm{OD}}} % optical depth
+\newcommand{\tauODchar}{\ensuremath{\breve{\tau}_\mathrm{OD}}} % optical depth
+\newcommand{\tauchar}{\ensuremath{\tilde{\tau}}} % optical depth
+\newcommand{\betaPR}{\ensuremath{\beta_\mathrm{PR}}} % Poynting-Robertson beta
+\newcommand{\betaPRref}{\ensuremath{\beta_\mathrm{PR,0}}} % Poynting-Robertson beta
+\newcommand{\betai}{\ensuremath{\beta_\mathrm{PR}}} % Poynting-Robertson beta
+\newcommand{\rBR}{\ensuremath{r_\mathrm{BR}}} % reference radius (birth ring)
+\newcommand{\tcol}{t_{\rm col}}
+\newcommand{\treside}{t_{\rm reside}}
+\newcommand{\ThetaPE}{\ensuremath{\Theta}}
+\newcommand{\St}{\ensuremath{\mathrm{St}}}
+\newcommand{\mmm}{\ensuremath{\mu}}
+\newcommand{\Mstar}{\ensuremath{M_\star}}
+\newcommand{\Lstar}{\ensuremath{L_\star}}
+\newcommand{\dragcoef}{\ensuremath{C_D}}
+\newcommand{\e}{\ensuremath{e}}
+\newcommand{\grainradius}{\ensuremath{a}}
+\newcommand{\cs}{\ensuremath{c_s}}
+\newcommand{\vv}{\ensuremath{\v{v}}}
+% Units:
+\newcommand{\Msun}{\ensuremath{M_\odot}}
+\newcommand{\Mearth}{\ensuremath{M_\oplus}}
+\newcommand{\Mdust}{\ensuremath{M_\mathrm{dust}}}
+\newcommand{\AU}{\ensuremath{\mathrm{AU}}}
+\newcommand{\micrometer}{\ensuremath{\muup\mathrm{m}}}
+\newcommand{\Lsun}{\ensuremath{L_\odot}}
+\newcommand{\cm}{\ensuremath{\mathrm{cm}}}
+\newcommand{\gram}{\ensuremath{\mathrm{g}}}
+\newcommand{\gcmtwo}{\ensuremath{\gram~\cm^{-2}}}
+% Operators:
+\newcommand{\deriv}[2]{\frac{d{#1}}{d{#2}}}
+\newcommand{\pderiv}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\ptderiv}[1]{\frac{\partial{#1}}{\partial{t}}}
+\renewcommand{\v}[1]{{\boldsymbol{#1}}}
+\newcommand{\aderiv}[1]{\frac{D{#1}}{D t}}
+\newcommand{\del}{\v{\nabla}}
+\newcommand{\grad}{\del}
+\newcommand{\Div}{\del\cdot}
+
+\newcommand{\Figure}[1]{Figure~\ref{#1}}
+\newcommand{\Fig}[1]{Fig.~\ref{#1}}
+\newcommand{\fig}[1]{\Fig{#1}}
+\newcommand{\Figs}[2]{Figs.~\ref{#1} and \ref{#2}}
+\newcommand{\Eq}[1]{Eq. (\ref{#1})}
+\newcommand{\Eqs}[2]{Eqs. (\ref{#1}) and~(\ref{#2})}
+\newcommand{\Eqss}[2]{Eqs. (\ref{#1})--(\ref{#2})}
+\newcommand{\eq}[1]{\Eq{#1}}
+\newcommand{\eqs}[2]{\Eqs{#1}{#2}}
+\newcommand{\eqss}[2]{\Eqss{#1}{#2}}
+\newcommand{\eqp}[1]{(Eq. \ref{#1})}
+\newcommand{\eqt}[1]{Eq. \ref{#1}}
+\newcommand{\advec}{\left(\v{u}\cdot\del\right)}
+\newcommand{\Table}[1]{Table~\ref{#1}}
+\newcommand{\sect}[1]{Sect.~\ref{#1}}
+
+
+\newcommand{\beqn}{\begin{eqnarray}}
+\newcommand{\eeqn}{\end{eqnarray}}
+\newcommand{\cv}{c_{_{V}}}
+\newcommand{\cp}{c_p}
+\newcommand{\taut}{\tau_{_T}}
+\newcommand{\xtimes}[2]{${#1}\times 10^{#2}$}
