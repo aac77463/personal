@@ -6,6 +6,11 @@ import math
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 plt.rcParams['image.cmap'] = 'inferno'
+plt.rcParams['ytick.labelsize'] = 32
+plt.rcParams['xtick.labelsize'] = 32
+plt.rcParams['mathtext.fontset'] = 'stix'
+plt.rcParams['font.family'] = 'STIXGeneral'
+
 
 #amount of orbits to be read
 nvar=20
@@ -40,8 +45,12 @@ for ivar in range(nvar):
     y2d = rad2d*np.sin(theta2d)
     #creates the plot of the image for each iteration
     fmap=ax.contourf(x2d, y2d, data_anim[:,:,ivar], np.linspace(0, 32,256))
+    ax.set_xlabel('x (100 AU)',fontsize=36)
+    ax.set_ylabel('y (100 AU)',fontsize=36)
     #creates colorbar
-    fig.colorbar(fmap, cax=cax, orientation='vertical', ticks=[0,8,16,24,32])
+    cbar = fig.colorbar(fmap, cax=cax, orientation='vertical', ticks=[0,8,16,24,32])
+    cbar.ax.tick_params(labelsize=32)
+    cbar.set_label(r'$\Sigma_{d} / \Sigma_{d,0}$', size=48)
     #for fcontour we have to use collections to loop
     add_arts=fmap.collections
     #appends each image to the new array
