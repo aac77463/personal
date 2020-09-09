@@ -17,12 +17,12 @@
 \contentsline {subsection}{\numberline {2.2.1}Dust Flattens the Gap Pressure Bump}{11}
 \contentsline {subsection}{\numberline {2.2.2}Dependency on Extent of Mass Reservoir}{11}
 \contentsline {subsection}{\numberline {2.2.3}Differences in Inner Disk for Different Planet Masses \& Dust-to-Gas Ratio}{13}
-\contentsline {section}{\numberline {2.3}Disk with $\varepsilon =10^{-1}$ and $h=0.05$}{15}
-\contentsline {section}{\numberline {2.4}Disk with $\varepsilon =1$ and $h=0.05$}{18}
-\contentsline {section}{\numberline {2.5}Dependence on Thermal Mass}{23}
-\contentsline {section}{\numberline {2.6}Disk with $\varepsilon =1$ and $H=0.1$}{23}
-\contentsline {section}{\numberline {2.7}Disk with $\varepsilon =1$ and $H=0.2$}{26}
-\contentsline {section}{\numberline {2.8}Conclusions}{29}
-\contentsline {chapter}{\numberline {3}Application to the Observations: HD141569A}{32}
-\contentsline {section}{\hspace {-19pt} References}{33}
+\contentsline {section}{\numberline {2.3}Disk with $\varepsilon =10^{-1}$ and $h=0.05$}{16}
+\contentsline {section}{\numberline {2.4}Disk with $\varepsilon =1$ and $h=0.05$}{19}
+\contentsline {section}{\numberline {2.5}Dependence on Thermal Mass}{24}
+\contentsline {section}{\numberline {2.6}Disk with $\varepsilon =1$ and $H=0.1$}{24}
+\contentsline {section}{\numberline {2.7}Disk with $\varepsilon =1$ and $H=0.2$}{27}
+\contentsline {section}{\numberline {2.8}Conclusions}{30}
+\contentsline {chapter}{\numberline {3}Application to the Observations: HD141569A}{33}
+\contentsline {section}{\hspace {-19pt} References}{34}
 \contentsfinish 
